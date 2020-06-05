@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/test/Opa5","./arrangements/Startup","./arrangements/FLP","./NavigationJourney","sap/ui/test/opaQunit"],function(e,a,n){"use strict";e.extendConfig({arrangements:new a,assertions:new n,viewNamespace:"p1_app.p1_app.view."})});

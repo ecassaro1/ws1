@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/test/opaQunit","./pages/App"],function(p){"use strict";QUnit.module("Navigation");p("Should see the app view",function(p,e,i){p.iStartMyFLPApp({intent:"p1_app-display"});i.onTheAppPage.iShouldSeeTheApp();i.iLeaveMyFLPApp()})});
