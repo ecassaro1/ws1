@@ -1,3 +1,14 @@
+Neste projeto tem o básico do CDS CAP:
+-modelo
+-serviço
+-db
+-v2 server
+-front-end: criei no WebIDE e juntei com o projeto aqui, trazendo os arquivos e mudando o mta.yaml
+
+Está salvo no Github WS1 ( https://github.com/ecassaro1/ws1.git )
+
+
+
 # Getting Started
 
 Welcome to your new project.
