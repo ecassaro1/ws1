@@ -7,7 +7,7 @@ ID: p1
 version: 1.0.0
 description: "A simple CAP project."
 parameters:
-  enable-parallel-deployments: true
+  enable-parallel-deployments: true  
 build-parameters:
   before-all:
    - builder: custom
@@ -42,38 +42,6 @@ modules:
     # 'hana' and 'xsuaa' resources extracted from CAP configuration
     - name: p1-db
 
- # -------------------- Trazidos do WebIDE ------------------------
- - name: p1-approuter
-   type: approuter.nodejs
-   path: p1-approuter
-   parameters:
-     disk-quota: 256M
-     memory: 256M
-   requires:
-     - name: p1_html5_repo_runtime
-     - name: dest_p1
-     - name: uaa_p1
- - name: p1_ui_deployer
-   type: com.sap.html5.application-content
-   path: p1_ui_deployer
-   requires:
-     - name: p1_html5_repo_host
-   build-parameters:
-     requires:
-       - name: p1_app
-         artifacts:
-           - './*'
-         target-path: resources/p1_app
- - name: p1_app
-   type: html5
-   path: p1_app
-   build-parameters:
-     builder: custom
-     commands:
-       - npm install
-       - npm run build
-     supported-platforms: []
-     build-result: dist
 
 resources:
  # services extracted from CAP configuration
@@ -87,27 +55,4 @@ resources:
      service-plan: hdi-shared
    properties:
      hdi-service-name: ${service-name}
-
- # -------------------- Trazidos do WebIDE ------------------------
- - name: p1_html5_repo_runtime
-   parameters:
-     service-plan: app-runtime
-     service: html5-apps-repo
-   type: org.cloudfoundry.managed-service
- - name: p1_html5_repo_host
-   parameters:
-     service-plan: app-host
-     service: html5-apps-repo
-   type: org.cloudfoundry.managed-service
- - name: uaa_p1
-   parameters:
-     path: ./xs-security.json
-     service-plan: application
-     service: xsuaa
-   type: org.cloudfoundry.managed-service
- - name: dest_p1
-   parameters:
-     service-plan: lite
-     service: destination
-   type: org.cloudfoundry.managed-service     
 

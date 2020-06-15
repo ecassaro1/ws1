@@ -10,8 +10,8 @@
     "@sap/cds-odata-v2-adapter-proxy": "^1.4.33",
     "build": "^0.1.4",
     "express": "^4",
-    "hdb": "^0.18.0",
-    "sqlite3": "^4.2.0"
+    "sqlite3": "^4.2.0",
+    "@sap/hana-client": "^2.4.196"
   },
   "scripts": {
     "start": "npx cds run"
@@ -19,18 +19,7 @@
   "cds": {
     "requires": {
       "db": {
-        "kind": "sqlite",
-        "model": [
-          "db",
-          "srv"
-        ],
-        "[production]": {
-          "kind": "hana",
-          "model": [
-            "db",
-            "srv"
-          ]
-        }
+        "kind": "sqlite"
       }
     }
   }
