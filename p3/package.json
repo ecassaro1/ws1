@@ -1,5 +1,5 @@
 {
-  "name": "p2",
+  "name": "p3",
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "repository": "<Add your repository here>",
@@ -12,12 +12,5 @@
   },
   "scripts": {
     "start": "npx cds run"
-  },
-  "cds": {
-    "requires": {
-      "db": {
-        "kind": "sqlite"
-      }
-    }
   }
 }

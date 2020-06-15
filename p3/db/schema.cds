@@ -1,4 +1,4 @@
-namespace p2;
+namespace p3;
 
 entity Ent1 {
     key id: Integer;
