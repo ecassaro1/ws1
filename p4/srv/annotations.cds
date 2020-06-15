@@ -1,8 +1,8 @@
-annotate p3.Ent1 with {
+annotate p4.Ent1 with {
 	id @title:'Ent1 ID'
 }
 
-annotate p3.Ent1 with @(
+annotate p4.Ent1 with @(
 
 	UI: {
 		SelectionFields: [ id ],
