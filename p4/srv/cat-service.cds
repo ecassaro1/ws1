@@ -1,4 +1,4 @@
-using { p2 as my } from '../db/schema';
+using { p4 as my } from '../db/schema';
 
 @path:'/catalog'
 service CatalogService {
