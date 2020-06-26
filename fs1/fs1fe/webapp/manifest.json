@@ -86,7 +86,6 @@
                 "type": "sap.ui.model.resource.ResourceModel",
                 "uri": "i18n/ObjectPage/Ent1/i18n.properties"
             },
-            
             "": {
                 "dataSource": "mainService",
                 "preload": true,
@@ -111,7 +110,6 @@
     "sap.ui.generic.app": {
         "_version": "1.3.0",
         "settings": {
-            "forceGlobalRefresh": false,
             "objectPageHeaderType": "Dynamic",
             "showDraftToggle": false
         },
