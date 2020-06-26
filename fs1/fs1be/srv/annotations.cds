@@ -9,6 +9,10 @@ annotate fs1be.Ent1 with @(
 		LineItem: [
 			{ Value: id, Label: 'Id' },
 			{ Value: description, Label: 'Description' }
+		],
+		Label: [
+			{ Value: id, Label: 'Id' },
+			{ Value: description, Label: 'Description' }
 		]
 	}
 
