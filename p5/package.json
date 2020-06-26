@@ -1,0 +1,19 @@
+{
+  "name": "p5",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^3",
+    "express": "^4",
+    "jquery": "^3.5.1",
+    "jsdom": "^16.2.2",
+    "sync-request": "^6.1.0",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "scripts": {
+    "start": "npx cds run"
+  }
+}
