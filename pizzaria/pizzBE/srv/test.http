@@ -1,0 +1,26 @@
+###
+GET http://localhost:4004/menu/Pedido
+
+###
+POST http://localhost:4004/menu/Pedido
+Content-Type: application/json
+
+{
+    "pizza_ID":20
+}
+
+
+###
+GET http://localhost:4004/adm/Pizza
+
+###
+POST http://localhost:4004/adm/Pizza
+Content-Type: application/json
+
+{
+    "ID":40,
+    "nome":"Califórnia",
+    "preco":49,
+    "custo":20
+}
+

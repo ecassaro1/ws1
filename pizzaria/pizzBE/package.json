@@ -1,0 +1,27 @@
+{
+  "name": "pizzBE",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^3",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.4.33",
+    "@sap/hana-client": "^2.4.177",
+    "cors-anywhere": "^0.4.3",
+    "express": "^4",
+    "sqlite3": "^5.0.0"
+  },
+  "scripts": {
+    "start": "npx cds run",
+    "proxy": "node proxy.js"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "hana"
+      }
+    }
+  }
+}
