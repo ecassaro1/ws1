@@ -8,10 +8,10 @@ service AdmService {
   entity Pizza as projection on my.C_Pizza;
   
   @odata.draft.enabled
-  entity Ingredientes as projection on my.Ingrediente;
+  entity Ingrediente as projection on my.Ingrediente;
 
   @odata.draft.enabled
-  entity PizzaIngredientes as projection on my.PizzaIngredientes;
+  entity PizzaIngredientes as projection on my.PizzaIngredientesV1;
 
   @readonly
   entity Pedido as projection on my.Pedido;

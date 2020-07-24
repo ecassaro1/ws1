@@ -4,5 +4,6 @@ module.exports = ((srv)=>{
 
   srv.after ('READ', 'Pizza', each => {
     each.lucro = ( each.preco - each.custo );
+    console.log('each.preco='+each.preco);
   })  
 })

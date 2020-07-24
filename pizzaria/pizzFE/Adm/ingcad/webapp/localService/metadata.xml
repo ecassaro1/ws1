@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Measures.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Measures" Namespace="Org.OData.Measures.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="AdmService" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="DraftAdministrativeData" EntityType="AdmService.DraftAdministrativeData"/>
+                <EntitySet Name="Ingredientes" EntityType="AdmService.Ingredientes"/>
+                <FunctionImport Name="Ingredientes_draftPrepare" EntitySet="Ingredientes" ReturnType="AdmService.Ingredientes" m:HttpMethod="POST" sap:action-for="AdmService.Ingredientes">
+                    <Parameter Name="ID" Type="Edm.Int32" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                    <Parameter Name="SideEffectsQualifier" Type="Edm.String" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="Ingredientes_draftActivate" EntitySet="Ingredientes" ReturnType="AdmService.Ingredientes" m:HttpMethod="POST" sap:action-for="AdmService.Ingredientes">
+                    <Parameter Name="ID" Type="Edm.Int32" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="Ingredientes_draftEdit" EntitySet="Ingredientes" ReturnType="AdmService.Ingredientes" m:HttpMethod="POST" sap:action-for="AdmService.Ingredientes">
+                    <Parameter Name="ID" Type="Edm.Int32" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                    <Parameter Name="PreserveChanges" Type="Edm.Boolean" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <EntitySet Name="Pedido" EntityType="AdmService.Pedido"/>
+                <EntitySet Name="Pizza" EntityType="AdmService.Pizza"/>
+                <FunctionImport Name="Pizza_draftPrepare" EntitySet="Pizza" ReturnType="AdmService.Pizza" m:HttpMethod="POST" sap:action-for="AdmService.Pizza">
+                    <Parameter Name="ID" Type="Edm.Int32" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                    <Parameter Name="SideEffectsQualifier" Type="Edm.String" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="Pizza_draftActivate" EntitySet="Pizza" ReturnType="AdmService.Pizza" m:HttpMethod="POST" sap:action-for="AdmService.Pizza">
+                    <Parameter Name="ID" Type="Edm.Int32" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="Pizza_draftEdit" EntitySet="Pizza" ReturnType="AdmService.Pizza" m:HttpMethod="POST" sap:action-for="AdmService.Pizza">
+                    <Parameter Name="ID" Type="Edm.Int32" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                    <Parameter Name="PreserveChanges" Type="Edm.Boolean" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <EntitySet Name="PizzaIngredientes" EntityType="AdmService.PizzaIngredientes"/>
+                <FunctionImport Name="PizzaIngredientes_draftPrepare" EntitySet="PizzaIngredientes" ReturnType="AdmService.PizzaIngredientes" m:HttpMethod="POST" sap:action-for="AdmService.PizzaIngredientes">
+                    <Parameter Name="pizza_ID" Type="Edm.Int32" Nullable="false" Mode="In"/>
+                    <Parameter Name="ingrediente_ID" Type="Edm.Int32" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                    <Parameter Name="SideEffectsQualifier" Type="Edm.String" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="PizzaIngredientes_draftActivate" EntitySet="PizzaIngredientes" ReturnType="AdmService.PizzaIngredientes" m:HttpMethod="POST" sap:action-for="AdmService.PizzaIngredientes">
+                    <Parameter Name="pizza_ID" Type="Edm.Int32" Nullable="false" Mode="In"/>
+                    <Parameter Name="ingrediente_ID" Type="Edm.Int32" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="PizzaIngredientes_draftEdit" EntitySet="PizzaIngredientes" ReturnType="AdmService.PizzaIngredientes" m:HttpMethod="POST" sap:action-for="AdmService.PizzaIngredientes">
+                    <Parameter Name="pizza_ID" Type="Edm.Int32" Nullable="false" Mode="In"/>
+                    <Parameter Name="ingrediente_ID" Type="Edm.Int32" Nullable="false" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" Mode="In"/>
+                    <Parameter Name="PreserveChanges" Type="Edm.Boolean" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <AssociationSet Name="Ingredientes_DraftAdministrativeData" Association="AdmService.Ingredientes_DraftAdministrativeData">
+                    <End Role="Ingredientes" EntitySet="Ingredientes"/>
+                    <End Role="DraftAdministrativeData" EntitySet="DraftAdministrativeData"/>
+                </AssociationSet>
+                <AssociationSet Name="Ingredientes_SiblingEntity" Association="AdmService.Ingredientes_SiblingEntity">
+                    <End Role="Ingredientes" EntitySet="Ingredientes"/>
+                    <End Role="Ingredientes1" EntitySet="Ingredientes"/>
+                </AssociationSet>
+                <AssociationSet Name="Pedido_pizza" Association="AdmService.Pedido_pizza">
+                    <End Role="Pedido" EntitySet="Pedido"/>
+                    <End Role="Pizza" EntitySet="Pizza"/>
+                </AssociationSet>
+                <AssociationSet Name="Pizza_DraftAdministrativeData" Association="AdmService.Pizza_DraftAdministrativeData">
+                    <End Role="Pizza" EntitySet="Pizza"/>
+                    <End Role="DraftAdministrativeData" EntitySet="DraftAdministrativeData"/>
+                </AssociationSet>
+                <AssociationSet Name="Pizza_SiblingEntity" Association="AdmService.Pizza_SiblingEntity">
+                    <End Role="Pizza" EntitySet="Pizza"/>
+                    <End Role="Pizza1" EntitySet="Pizza"/>
+                </AssociationSet>
+                <AssociationSet Name="PizzaIngredientes_pizza" Association="AdmService.PizzaIngredientes_pizza">
+                    <End Role="PizzaIngredientes" EntitySet="PizzaIngredientes"/>
+                    <End Role="Pizza" EntitySet="Pizza"/>
+                </AssociationSet>
+                <AssociationSet Name="PizzaIngredientes_ingrediente" Association="AdmService.PizzaIngredientes_ingrediente">
+                    <End Role="PizzaIngredientes" EntitySet="PizzaIngredientes"/>
+                    <End Role="Ingredientes" EntitySet="Ingredientes"/>
+                </AssociationSet>
+                <AssociationSet Name="PizzaIngredientes_DraftAdministrativeData" Association="AdmService.PizzaIngredientes_DraftAdministrativeData">
+                    <End Role="PizzaIngredientes" EntitySet="PizzaIngredientes"/>
+                    <End Role="DraftAdministrativeData" EntitySet="DraftAdministrativeData"/>
+                </AssociationSet>
+                <AssociationSet Name="PizzaIngredientes_SiblingEntity" Association="AdmService.PizzaIngredientes_SiblingEntity">
+                    <End Role="PizzaIngredientes" EntitySet="PizzaIngredientes"/>
+                    <End Role="PizzaIngredientes1" EntitySet="PizzaIngredientes"/>
+                </AssociationSet>
+            </EntityContainer>
+            <EntityType Name="DraftAdministrativeData">
+                <Key>
+                    <PropertyRef Name="DraftUUID"/>
+                </Key>
+                <Property Name="DraftUUID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsCreatedByMe" Type="Edm.Boolean"/>
+                <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="InProcessByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean"/>
+            </EntityType>
+            <EntityType Name="Ingredientes">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="nome" Type="Edm.String" MaxLength="100"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Relationship="AdmService.Ingredientes_DraftAdministrativeData" FromRole="Ingredientes" ToRole="DraftAdministrativeData"/>
+                <Property Name="DraftAdministrativeData_DraftUUID" Type="Edm.Guid"/>
+                <NavigationProperty Name="SiblingEntity" Relationship="AdmService.Ingredientes_SiblingEntity" FromRole="Ingredientes" ToRole="Ingredientes1"/>
+            </EntityType>
+            <EntityType Name="Pedido">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <NavigationProperty Name="pizza" Relationship="AdmService.Pedido_pizza" FromRole="Pedido" ToRole="Pizza"/>
+                <Property Name="pizza_ID" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="Pizza">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="nome" Type="Edm.String" MaxLength="100"/>
+                <Property Name="preco" Type="Edm.Decimal" Scale="2" Precision="5"/>
+                <Property Name="custo" Type="Edm.Decimal" Scale="2" Precision="5"/>
+                <Property Name="lucro" Type="Edm.Decimal" Scale="2" Precision="5"/>
+                <Property Name="moeda" Type="Edm.String" MaxLength="3"/>
+                <NavigationProperty Name="ingredientes" Relationship="AdmService.PizzaIngredientes_pizza" FromRole="Pizza" ToRole="PizzaIngredientes"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Relationship="AdmService.Pizza_DraftAdministrativeData" FromRole="Pizza" ToRole="DraftAdministrativeData"/>
+                <Property Name="DraftAdministrativeData_DraftUUID" Type="Edm.Guid"/>
+                <NavigationProperty Name="SiblingEntity" Relationship="AdmService.Pizza_SiblingEntity" FromRole="Pizza" ToRole="Pizza1"/>
+            </EntityType>
+            <EntityType Name="PizzaIngredientes">
+                <Key>
+                    <PropertyRef Name="pizza_ID"/>
+                    <PropertyRef Name="ingrediente_ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <NavigationProperty Name="pizza" Relationship="AdmService.PizzaIngredientes_pizza" FromRole="PizzaIngredientes" ToRole="Pizza"/>
+                <NavigationProperty Name="ingrediente" Relationship="AdmService.PizzaIngredientes_ingrediente" FromRole="PizzaIngredientes" ToRole="Ingredientes"/>
+                <Property Name="pizza_ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="ingrediente_ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Relationship="AdmService.PizzaIngredientes_DraftAdministrativeData" FromRole="PizzaIngredientes" ToRole="DraftAdministrativeData"/>
+                <Property Name="DraftAdministrativeData_DraftUUID" Type="Edm.Guid"/>
+                <NavigationProperty Name="SiblingEntity" Relationship="AdmService.PizzaIngredientes_SiblingEntity" FromRole="PizzaIngredientes" ToRole="PizzaIngredientes1"/>
+            </EntityType>
+            <Association Name="Ingredientes_DraftAdministrativeData">
+                <End Role="Ingredientes" Type="AdmService.Ingredientes" Multiplicity="*"/>
+                <End Role="DraftAdministrativeData" Type="AdmService.DraftAdministrativeData" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="DraftAdministrativeData">
+                        <PropertyRef Name="DraftUUID"/>
+                    </Principal>
+                    <Dependent Role="Ingredientes">
+                        <PropertyRef Name="DraftAdministrativeData_DraftUUID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Ingredientes_SiblingEntity">
+                <End Role="Ingredientes" Type="AdmService.Ingredientes" Multiplicity="*"/>
+                <End Role="Ingredientes1" Type="AdmService.Ingredientes" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="Pedido_pizza">
+                <End Role="Pedido" Type="AdmService.Pedido" Multiplicity="*"/>
+                <End Role="Pizza" Type="AdmService.Pizza" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Pizza">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="Pedido">
+                        <PropertyRef Name="pizza_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Pizza_DraftAdministrativeData">
+                <End Role="Pizza" Type="AdmService.Pizza" Multiplicity="*"/>
+                <End Role="DraftAdministrativeData" Type="AdmService.DraftAdministrativeData" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="DraftAdministrativeData">
+                        <PropertyRef Name="DraftUUID"/>
+                    </Principal>
+                    <Dependent Role="Pizza">
+                        <PropertyRef Name="DraftAdministrativeData_DraftUUID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Pizza_SiblingEntity">
+                <End Role="Pizza" Type="AdmService.Pizza" Multiplicity="*"/>
+                <End Role="Pizza1" Type="AdmService.Pizza" Multiplicity="0..1"/>
+            </Association>
+            <Association Name="PizzaIngredientes_pizza">
+                <End Role="PizzaIngredientes" Type="AdmService.PizzaIngredientes" Multiplicity="*"/>
+                <End Role="Pizza" Type="AdmService.Pizza" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Pizza">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="PizzaIngredientes">
+                        <PropertyRef Name="pizza_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PizzaIngredientes_ingrediente">
+                <End Role="PizzaIngredientes" Type="AdmService.PizzaIngredientes" Multiplicity="*"/>
+                <End Role="Ingredientes" Type="AdmService.Ingredientes" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Ingredientes">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="PizzaIngredientes">
+                        <PropertyRef Name="ingrediente_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PizzaIngredientes_DraftAdministrativeData">
+                <End Role="PizzaIngredientes" Type="AdmService.PizzaIngredientes" Multiplicity="*"/>
+                <End Role="DraftAdministrativeData" Type="AdmService.DraftAdministrativeData" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="DraftAdministrativeData">
+                        <PropertyRef Name="DraftUUID"/>
+                    </Principal>
+                    <Dependent Role="PizzaIngredientes">
+                        <PropertyRef Name="DraftAdministrativeData_DraftUUID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PizzaIngredientes_SiblingEntity">
+                <End Role="PizzaIngredientes" Type="AdmService.PizzaIngredientes" Multiplicity="*"/>
+                <End Role="PizzaIngredientes1" Type="AdmService.PizzaIngredientes" Multiplicity="0..1"/>
+            </Association>
+            <Annotations Target="AdmService.DraftAdministrativeData/DraftUUID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft (Technical ID)"/>
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AdmService.DraftAdministrativeData/CreationDateTime" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft Created On"/>
+            </Annotations>
+            <Annotations Target="AdmService.DraftAdministrativeData/CreatedByUser" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft Created By"/>
+            </Annotations>
+            <Annotations Target="AdmService.DraftAdministrativeData/DraftIsCreatedByMe" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft Created By Me"/>
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AdmService.DraftAdministrativeData/LastChangeDateTime" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft Last Changed On"/>
+            </Annotations>
+            <Annotations Target="AdmService.DraftAdministrativeData/LastChangedByUser" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft Last Changed By"/>
+            </Annotations>
+            <Annotations Target="AdmService.DraftAdministrativeData/InProcessByUser" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft In Process By"/>
+            </Annotations>
+            <Annotations Target="AdmService.DraftAdministrativeData/DraftIsProcessedByMe" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Draft In Process By Me"/>
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AdmService.Ingredientes" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.CollectionFacet">
+                            <PropertyValue Property="Label" String="Descrição do ingrediente"/>
+                            <PropertyValue Property="Facets">
+                                <Collection>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#IngredienteDescription"/>
+                                        <PropertyValue Property="Label" String="Descrição do Produto"/>
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="IngredienteDescription">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="nome"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="IngredienteID">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ID"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#IngredienteID"/>
+                            <PropertyValue Property="Label" String="Chave"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="TypeName" String="Ingrediente"/>
+                        <PropertyValue Property="TypeNamePlural" String="Ingredientes"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ID"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="nome"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>ID</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="AdmService.EntityContainer/Ingredientes" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.DraftRoot">
+                    <Record Type="Common.DraftRootType">
+                        <PropertyValue Property="ActivationAction" String="AdmService.EntityContainer/Ingredientes_draftActivate"/>
+                        <PropertyValue Property="EditAction" String="AdmService.EntityContainer/Ingredientes_draftEdit"/>
+                        <PropertyValue Property="PreparationAction" String="AdmService.EntityContainer/Ingredientes_draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="AdmService.Ingredientes/ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Código"/>
+            </Annotations>
+            <Annotations Target="AdmService.Ingredientes/nome" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Nome"/>
+            </Annotations>
+            <Annotations Target="AdmService.Ingredientes/IsActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AdmService.Ingredientes/HasActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AdmService.Ingredientes/HasDraftEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AdmService.Ingredientes/DraftAdministrativeData" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AdmService.Ingredientes/DraftAdministrativeData_DraftUUID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AdmService.EntityContainer/Pedido" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="AdmService.Pizza" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.CollectionFacet">
+                            <PropertyValue Property="Label" String="Descrição do produto"/>
+                            <PropertyValue Property="Facets">
+                                <Collection>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#PizzaDescription"/>
+                                        <PropertyValue Property="Label" String="Descrição do Produto"/>
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="PizzaDescription">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="nome"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="preco"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="custo"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="lucro"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="PizzaID">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ID"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#PizzaID"/>
+                            <PropertyValue Property="Label" String="Chave"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="TypeName" String="Pizza"/>
+                        <PropertyValue Property="TypeNamePlural" String="Pizzas"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ID"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="nome"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="preco"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>ID</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="AdmService.EntityContainer/Pizza" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.DraftRoot">
+                    <Record Type="Common.DraftRootType">
+                        <PropertyValue Property="ActivationAction" String="AdmService.EntityContainer/Pizza_draftActivate"/>
+                        <PropertyValue Property="EditAction" String="AdmService.EntityContainer/Pizza_draftEdit"/>
+                        <PropertyValue Property="PreparationAction" String="AdmService.EntityContainer/Pizza_draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="AdmService.Pizza/ID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Código"/>
+            </Annotations>
+            <Annotations Target="AdmService.Pizza/nome" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Nome"/>
+            </Annotations>
+            <Annotations Target="AdmService.Pizza/preco" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Preço"/>
+                <Annotation Term="Measures.ISOCurrency" Path="moeda"/>
+            </Annotations>
+            <Annotations Target="AdmService.Pizza/custo" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Custo"/>
+                <Annotation Term="Measures.ISOCurrency" Path="moeda"/>
+            </Annotations>
+            <Annotations Target="AdmService.Pizza/lucro" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Lucro"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Measures.ISOCurrency" Path="moeda"/>
+            </Annotations>
+            <Annotations Target="AdmService.Pizza/moeda" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Moeda"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AdmService.Pizza/IsActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AdmService.Pizza/HasActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AdmService.Pizza/HasDraftEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AdmService.Pizza/DraftAdministrativeData" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AdmService.Pizza/DraftAdministrativeData_DraftUUID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AdmService.EntityContainer/PizzaIngredientes" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.DraftRoot">
+                    <Record Type="Common.DraftRootType">
+                        <PropertyValue Property="ActivationAction" String="AdmService.EntityContainer/PizzaIngredientes_draftActivate"/>
+                        <PropertyValue Property="EditAction" String="AdmService.EntityContainer/PizzaIngredientes_draftEdit"/>
+                        <PropertyValue Property="PreparationAction" String="AdmService.EntityContainer/PizzaIngredientes_draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="AdmService.PizzaIngredientes/IsActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AdmService.PizzaIngredientes/HasActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AdmService.PizzaIngredientes/HasDraftEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AdmService.PizzaIngredientes/DraftAdministrativeData" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="AdmService.PizzaIngredientes/DraftAdministrativeData_DraftUUID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

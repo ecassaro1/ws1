@@ -1,17 +1,3 @@
-
-serviço 
-    https://pizzbe-srv-noisy-hedgehog-hb.cfapps.us10.hana.ondemand.com/v2/
-
-    está hosteado no meu space 'pizza'
-
-pra deployar:
-    db kind no package.json = hana ou sql
-    cds build --clean
-    na pasta gen, dentro de db e srv tem os manifest.yaml. Tem que trocar o nome do DB pra pizzaDB
-    cf push -f gen\db
-    cf push -f gen\srv --random-route
-
-
 # Getting Started
 
 Welcome to your new project.

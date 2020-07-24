@@ -24,3 +24,21 @@ Content-Type: application/json
     "custo":20
 }
 
+###
+POST http://localhost:4004/test/Ingredientes
+Content-Type: application/json
+
+{
+    "ID":9,
+    "nome":"escarola"
+}
+
+###
+GET http://localhost:8080/v2/adm/Ingredientes
+
+
+###
+POST http://localhost:8080/v2/adm/Ingredientes
+Content-Type: application/json
+
+{"__metadata":{"type":"AdmService.Ingredientes"}}
