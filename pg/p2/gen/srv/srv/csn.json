@@ -1,0 +1,124 @@
+{
+  "namespace": "this",
+  "definitions": {
+    "this.Kind": {
+      "kind": "type",
+      "type": "cds.String",
+      "enum": {
+        "Salt": {},
+        "Sweet": {}
+      }
+    },
+    "this.Pizzas": {
+      "kind": "entity",
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "description": {
+          "type": "cds.String"
+        },
+        "kind": {
+          "type": "this.Kind"
+        },
+        "price": {
+          "type": "cds.Integer"
+        }
+      }
+    },
+    "this.Promos": {
+      "kind": "entity",
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "pizza": {
+          "type": "cds.Association",
+          "target": "this.Pizzas",
+          "keys": [
+            {
+              "ref": [
+                "ID"
+              ]
+            }
+          ]
+        },
+        "discount": {
+          "type": "cds.Integer"
+        }
+      }
+    },
+    "AdminService": {
+      "@source": "srv/adminService.cds",
+      "kind": "service"
+    },
+    "AdminService.Pizzas": {
+      "kind": "entity",
+      "@cds.odata.valuelist": true,
+      "@cds.autoexpose": true,
+      "projection": {
+        "from": {
+          "ref": [
+            "this.Pizzas"
+          ]
+        }
+      },
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "description": {
+          "type": "cds.String"
+        },
+        "kind": {
+          "type": "this.Kind"
+        },
+        "price": {
+          "type": "cds.Integer"
+        }
+      }
+    },
+    "AdminService.Promos": {
+      "kind": "entity",
+      "@Consumption.valueHelp": "_Pizzas",
+      "@ObjectModel.mandatory": true,
+      "@odata.draft.enabled": true,
+      "@ObjectModel.foreignKey.association": "_Pizzas",
+      "projection": {
+        "from": {
+          "ref": [
+            "this.Promos"
+          ]
+        }
+      },
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "pizza": {
+          "type": "cds.Association",
+          "target": "AdminService.Pizzas",
+          "keys": [
+            {
+              "ref": [
+                "ID"
+              ]
+            }
+          ]
+        },
+        "discount": {
+          "type": "cds.Integer"
+        }
+      }
+    }
+  },
+  "meta": {
+    "creator": "CDS Compiler v2.2.8",
+    "flavor": "inferred"
+  },
+  "$version": "2.0"
+}
