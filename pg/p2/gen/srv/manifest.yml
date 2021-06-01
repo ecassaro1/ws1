@@ -6,3 +6,4 @@ applications:
     buildpacks:
       - nodejs_buildpack
     services:
+      - p2-db

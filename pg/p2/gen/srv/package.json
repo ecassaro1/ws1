@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@sap/hdi-deploy": "^4.0.5",
+    "@sap/ux-specification": "^1.90.0",
     "sqlite3": "^5.0.2"
   },
   "scripts": {
@@ -52,6 +53,11 @@
       "deploy-format": "hdbtable"
     }
   },
+  "sapux": [
+    "app/pizzas_app",
+    "app/pizzas_app2",
+    "app/pizza4"
+  ],
   "engines": {
     "node": ">=12"
   }

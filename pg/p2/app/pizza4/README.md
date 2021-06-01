@@ -1,22 +1,22 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Wed May 26 2021 18:59:31 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Tue Jun 01 2021 13:52:34 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>@sap/generator-fiori|
-|**App Generator Version**<br>1.1.11|
+|**App Generator Version**<br>1.2.0|
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Floorplan Used**<br>List Report Object Page V4|
 |**Service Type**<br>Local Cap|
 |**Service URL**<br>/admin/
-|**Module Name**<br>pizzas_app|
-|**Application Title**<br>Pizzas|
+|**Module Name**<br>pizza4|
+|**Application Title**<br>Pizza4|
 |**Namespace**<br>|
 |**UI5 Theme**<br>sap_fiori_3|
 |**UI5 Version**<br>Latest|
 |**Enable Telemetry**<br>True|
 |**Main Entity**<br>Pizzas|
 
-## pizzas_app
+## pizza4
 
 A Fiori application.
 
@@ -24,7 +24,7 @@ A Fiori application.
 
 -   This app has been generated using the SAP Fiori tools - App Generator, as part of the SAP Fiori tools suite.  In order to launch the generated app, simply start your CAP project and navigate to the following location in your browser:
 
-http://localhost:4004/pizzas_app/webapp/index.html
+http://localhost:4004/pizza4/webapp/index.html
 
 #### Pre-requisites:
 

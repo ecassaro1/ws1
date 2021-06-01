@@ -11,6 +11,7 @@
     },
     "this.Pizzas": {
       "kind": "entity",
+      "@odata.draft.enabled": true,
       "elements": {
         "ID": {
           "key": true,
@@ -58,6 +59,7 @@
       "kind": "entity",
       "@cds.odata.valuelist": true,
       "@cds.autoexpose": true,
+      "@odata.draft.enabled": true,
       "projection": {
         "from": {
           "ref": [
@@ -83,10 +85,10 @@
     },
     "AdminService.Promos": {
       "kind": "entity",
-      "@Consumption.valueHelp": "_Pizzas",
-      "@ObjectModel.mandatory": true,
       "@odata.draft.enabled": true,
+      "@Consumption.valueHelp": "_Pizzas",
       "@ObjectModel.foreignKey.association": "_Pizzas",
+      "@ObjectModel.mandatory": true,
       "projection": {
         "from": {
           "ref": [

@@ -16,3 +16,17 @@ AppVariant_index.html
 AppVariantPreviewPayload.zip
 mergedManifestDescriptor.json
 .*/node_modules/
+.*/gen/
+.*/gen/*
+.*/*/gen/
+./pg/p2/gen/
+./pg/p2/node_modules/
+/pg/p2/gen/
+/pg/p2/node_modules/
+/pg/p2/gen/*
+/pg/p2/node_modules/*
+.*/pg/p2/gen/*
+.*/pg/p2/node_modules/*
+pg/p2/node_modules/
+pg/p2/gen/*
+pg/p2/gen/srv/*
