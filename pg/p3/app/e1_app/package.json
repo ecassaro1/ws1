@@ -1,7 +1,7 @@
 {
-    "name": "pizza4",
+    "name": "e1_app",
     "version": "0.0.1",
-    "description": "A Fiori application.",
+    "description": "E1 Report",
     "keywords": [
         "ui5",
         "openui5",
@@ -13,7 +13,7 @@
         "build:cf": "ui5 build preload --clean-dest --config ui5-deploy.yaml --include-task=generateManifestBundle generateCachebusterInfo"
     },
     "devDependencies": {
-        "@ui5/cli": "^2.10.1",
+        "@ui5/cli": "^2.10.4",
         "@ui5/fs": "^2.0.6",
         "@ui5/logger": "^2.0.1",
         "@sap/ux-ui5-tooling": "1",

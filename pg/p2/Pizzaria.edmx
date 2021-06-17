@@ -1,0 +1,186 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+<script> try { Object.defineProperty(navigator, "globalPrivacyControl", { value: false, configurable: false, writable: false }); document.currentScript.parentElement.removeChild(document.currentScript); } catch(e) {}; </script>
+<edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+</edmx:Reference>
+<edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+<edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+</edmx:Reference>
+<edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+</edmx:Reference>
+<edmx:DataServices>
+<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="AdminService">
+<EntityContainer Name="EntityContainer">
+<EntitySet Name="Pizzas" EntityType="AdminService.Pizzas">
+<NavigationPropertyBinding Path="SiblingEntity" Target="Pizzas"/>
+</EntitySet>
+<EntitySet Name="Promos" EntityType="AdminService.Promos">
+<NavigationPropertyBinding Path="pizza" Target="Pizzas"/>
+<NavigationPropertyBinding Path="SiblingEntity" Target="Promos"/>
+</EntitySet>
+</EntityContainer>
+<EntityType Name="DraftAdministrativeData">
+<Key>
+<PropertyRef Name="DraftUUID"/>
+</Key>
+<Property Name="DraftUUID" Type="Edm.Guid" Nullable="false"/>
+<Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+<Property Name="CreatedByUser" Type="Edm.String" MaxLength="256"/>
+<Property Name="DraftIsCreatedByMe" Type="Edm.Boolean"/>
+<Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+<Property Name="LastChangedByUser" Type="Edm.String" MaxLength="256"/>
+<Property Name="InProcessByUser" Type="Edm.String" MaxLength="256"/>
+<Property Name="DraftIsProcessedByMe" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="Pizzas">
+<Key>
+<PropertyRef Name="ID"/>
+<PropertyRef Name="IsActiveEntity"/>
+</Key>
+<Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+<Property Name="description" Type="Edm.String"/>
+<Property Name="kind" Type="Edm.String"/>
+<Property Name="price" Type="Edm.Int32"/>
+<Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+<Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+<Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+<NavigationProperty Name="DraftAdministrativeData" Type="AdminService.DraftAdministrativeData" ContainsTarget="true"/>
+<NavigationProperty Name="SiblingEntity" Type="AdminService.Pizzas"/>
+</EntityType>
+<EntityType Name="Promos">
+<Key>
+<PropertyRef Name="ID"/>
+<PropertyRef Name="IsActiveEntity"/>
+</Key>
+<Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+<NavigationProperty Name="pizza" Type="AdminService.Pizzas">
+<ReferentialConstraint Property="pizza_ID" ReferencedProperty="ID"/>
+</NavigationProperty>
+<Property Name="pizza_ID" Type="Edm.Guid"/>
+<Property Name="discount" Type="Edm.Int32"/>
+<Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+<Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+<Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+<NavigationProperty Name="DraftAdministrativeData" Type="AdminService.DraftAdministrativeData" ContainsTarget="true"/>
+<NavigationProperty Name="SiblingEntity" Type="AdminService.Promos"/>
+</EntityType>
+<Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+<Parameter Name="in" Type="AdminService.Pizzas"/>
+<Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+<ReturnType Type="AdminService.Pizzas"/>
+</Action>
+<Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+<Parameter Name="in" Type="AdminService.Promos"/>
+<Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+<ReturnType Type="AdminService.Promos"/>
+</Action>
+<Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+<Parameter Name="in" Type="AdminService.Pizzas"/>
+<ReturnType Type="AdminService.Pizzas"/>
+</Action>
+<Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+<Parameter Name="in" Type="AdminService.Promos"/>
+<ReturnType Type="AdminService.Promos"/>
+</Action>
+<Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+<Parameter Name="in" Type="AdminService.Pizzas"/>
+<Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+<ReturnType Type="AdminService.Pizzas"/>
+</Action>
+<Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+<Parameter Name="in" Type="AdminService.Promos"/>
+<Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+<ReturnType Type="AdminService.Promos"/>
+</Action>
+<Annotations Target="AdminService.DraftAdministrativeData">
+<Annotation Term="Common.Label" String="{i18n>Draft_DraftAdministrativeData}"/>
+</Annotations>
+<Annotations Target="AdminService.DraftAdministrativeData/DraftUUID">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="{i18n>Draft_DraftUUID}"/>
+</Annotations>
+<Annotations Target="AdminService.DraftAdministrativeData/CreationDateTime">
+<Annotation Term="Common.Label" String="{i18n>Draft_CreationDateTime}"/>
+</Annotations>
+<Annotations Target="AdminService.DraftAdministrativeData/CreatedByUser">
+<Annotation Term="Common.Label" String="{i18n>Draft_CreatedByUser}"/>
+</Annotations>
+<Annotations Target="AdminService.DraftAdministrativeData/DraftIsCreatedByMe">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="{i18n>Draft_DraftIsCreatedByMe}"/>
+</Annotations>
+<Annotations Target="AdminService.DraftAdministrativeData/LastChangeDateTime">
+<Annotation Term="Common.Label" String="{i18n>Draft_LastChangeDateTime}"/>
+</Annotations>
+<Annotations Target="AdminService.DraftAdministrativeData/LastChangedByUser">
+<Annotation Term="Common.Label" String="{i18n>Draft_LastChangedByUser}"/>
+</Annotations>
+<Annotations Target="AdminService.DraftAdministrativeData/InProcessByUser">
+<Annotation Term="Common.Label" String="{i18n>Draft_InProcessByUser}"/>
+</Annotations>
+<Annotations Target="AdminService.DraftAdministrativeData/DraftIsProcessedByMe">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="{i18n>Draft_DraftIsProcessedByMe}"/>
+</Annotations>
+<Annotations Target="AdminService.EntityContainer/Pizzas">
+<Annotation Term="Common.DraftRoot">
+<Record Type="Common.DraftRootType">
+<PropertyValue Property="ActivationAction" String="AdminService.draftActivate"/>
+<PropertyValue Property="EditAction" String="AdminService.draftEdit"/>
+<PropertyValue Property="PreparationAction" String="AdminService.draftPrepare"/>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations Target="AdminService.Pizzas/IsActiveEntity">
+<Annotation Term="UI.Hidden" Bool="true"/>
+</Annotations>
+<Annotations Target="AdminService.Pizzas/HasActiveEntity">
+<Annotation Term="UI.Hidden" Bool="true"/>
+</Annotations>
+<Annotations Target="AdminService.Pizzas/HasDraftEntity">
+<Annotation Term="UI.Hidden" Bool="true"/>
+</Annotations>
+<Annotations Target="AdminService.Pizzas/DraftAdministrativeData">
+<Annotation Term="UI.Hidden" Bool="true"/>
+</Annotations>
+<Annotations Target="AdminService.EntityContainer/Promos">
+<Annotation Term="Common.DraftRoot">
+<Record Type="Common.DraftRootType">
+<PropertyValue Property="ActivationAction" String="AdminService.draftActivate"/>
+<PropertyValue Property="EditAction" String="AdminService.draftEdit"/>
+<PropertyValue Property="PreparationAction" String="AdminService.draftPrepare"/>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations Target="AdminService.Promos/pizza_ID">
+<Annotation Term="Common.ValueList">
+<Record Type="Common.ValueListType">
+<PropertyValue Property="Label" String="Pizzas"/>
+<PropertyValue Property="CollectionPath" String="Pizzas"/>
+<PropertyValue Property="Parameters">
+<Collection>
+<Record Type="Common.ValueListParameterInOut">
+<PropertyValue Property="LocalDataProperty" PropertyPath="pizza_ID"/>
+<PropertyValue Property="ValueListProperty" String="ID"/>
+</Record>
+</Collection>
+</PropertyValue>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations Target="AdminService.Promos/IsActiveEntity">
+<Annotation Term="UI.Hidden" Bool="true"/>
+</Annotations>
+<Annotations Target="AdminService.Promos/HasActiveEntity">
+<Annotation Term="UI.Hidden" Bool="true"/>
+</Annotations>
+<Annotations Target="AdminService.Promos/HasDraftEntity">
+<Annotation Term="UI.Hidden" Bool="true"/>
+</Annotations>
+<Annotations Target="AdminService.Promos/DraftAdministrativeData">
+<Annotation Term="UI.Hidden" Bool="true"/>
+</Annotations>
+</Schema>
+</edmx:DataServices>
+</edmx:Edmx>

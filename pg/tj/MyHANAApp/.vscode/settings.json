@@ -1,0 +1,18 @@
+{
+    "files.exclude": {
+        "**/.gitignore": true,
+        "**/.git": true,
+        "**/.vscode": true
+    },
+    "eslint.validate": [
+        "javascript",
+        "cds",
+        "json",
+        "yaml",
+        "csn"
+    ],
+    "eslint.options": {
+        "configFile": "/extbin/npm/docker/lib/node_modules/@sap/cds-dk/lib/lint/.eslintrc.js"
+    },
+    "actions": []
+}

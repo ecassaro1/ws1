@@ -1,5 +1,5 @@
 {
-    "name": "p3",
+    "name": "MyHANAApp",
     "version": "1.0.0",
     "description": "A simple CAP project.",
     "repository": "<Add your repository here>",
@@ -8,11 +8,7 @@
     "dependencies": {
         "@sap/cds": "^5",
         "express": "^4",
-        "@sap/hana-client": "^2.6.61"
-    },
-    "devDependencies": {
-        "@sap/ux-specification": "^1.90.1",
-        "sqlite3": "^5.0.2"
+        "@sap/hana-client": "^2.7"
     },
     "scripts": {
         "start": "cds run"
@@ -42,14 +38,13 @@
             "require-atomic-updates": "off"
         }
     },
-    "sapux": [
-        "app/e1_report",
-        "app/e1_app"
-    ],
     "cds": {
+        "build": {
+            "target": "."
+        },
         "requires": {
             "db": {
-                "kind": "sql"
+                "kind": "hana"
             }
         },
         "hana": {

@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
 specVersion: '1.0'
 metadata:
-  name: pizza4
+  name: pg.app.e1.e1app
 type: application
 ui5Version: 
 ui5Theme: sap_fiori_3
@@ -22,6 +22,6 @@ builder:
   - name: ui5-task-zipper
     afterTask: generateCachebusterInfo
     configuration:
-      archiveName: pizza4
+      archiveName: pgappe1e1app
       additionalFiles:
       - xs-app.json

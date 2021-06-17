@@ -1,33 +1,52 @@
-## Generated mta.yaml based on template version 0.4.0
-## appName = p3
-## language=nodejs; multitenant=false
-## approuter=
-_schema-version: '3.1'
+_schema-version: "3.1"
 ID: p3
+description: A simple CAP project.
 version: 1.0.0
-description: "A simple CAP project."
+modules:
+- name: p3-srv
+  type: nodejs
+  path: gen/srv
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+- name: p3-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: p3-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - pgappe1e1app.zip
+      name: pgappe1e1app
+      target-path: resources/
+- name: pgappe1e1app
+  type: html5
+  path: app/e1_app
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: p3-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: p3-html5-srv
+    service-plan: app-host
 parameters:
+  deploy_mode: html5-repo
   enable-parallel-deployments: true
-   
 build-parameters:
   before-all:
-   - builder: custom
-     commands:
-      - npm install --production
-      - npx -p @sap/cds-dk cds build --production
-
-modules:
- # --------------------- SERVER MODULE ------------------------
- - name: p3-srv
- # ------------------------------------------------------------
-   type: nodejs
-   path: gen/srv
-   provides:
-    - name: srv-api      # required by consumers of CAP services (e.g. approuter)
-      properties:
-        srv-url: ${default-url}
-
-
-
-
-
+  - builder: custom
+    commands:
+    - npm install --production
+    - npx -p @sap/cds-dk cds build --production

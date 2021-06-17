@@ -1,7 +1,7 @@
 {
     "_version": "1.32.0",
     "sap.app": {
-        "id": "pizza4",
+        "id": "pg.app.e1.e1app",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -50,7 +50,8 @@
             "minUI5Version": "1.76.0",
             "libs": {
                 "sap.ui.core": {},
-                "sap.fe.templates": {}
+                "sap.fe.templates": {},
+                "sap.f": {}
             }
         },
         "models": {
@@ -73,49 +74,72 @@
             "routes": [
                 {
                     "pattern": ":?query:",
-                    "name": "PizzasList",
-                    "target": "PizzasList"
+                    "name": "Ent1List",
+                    "target": [
+                        "Ent1List"
+                    ]
                 },
                 {
-                    "pattern": "Pizzas({key}):?query:",
-                    "name": "PizzasObjectPage",
-                    "target": "PizzasObjectPage"
+                    "pattern": "Ent1({key}):?query:",
+                    "name": "Ent1ObjectPage",
+                    "target": [
+                        "Ent1List",
+                        "Ent1ObjectPage"
+                    ]
                 }
             ],
             "targets": {
-                "PizzasList": {
+                "Ent1List": {
                     "type": "Component",
-                    "id": "PizzasList",
+                    "id": "Ent1List",
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
-                            "entitySet": "Pizzas",
+                            "entitySet": "Ent1",
                             "variantManagement": "Page",
                             "navigation": {
-                                "Pizzas": {
+                                "Ent1": {
                                     "detail": {
-                                        "route": "PizzasObjectPage"
+                                        "route": "Ent1ObjectPage"
                                     }
                                 }
-                            }
+                            },
+                            "initialLoad": "Enabled"
                         }
-                    }
+                    },
+                    "controlAggregation": "beginColumnPages",
+                    "contextPattern": ""
                 },
-                "PizzasObjectPage": {
+                "Ent1ObjectPage": {
                     "type": "Component",
-                    "id": "PizzasObjectPage",
+                    "id": "Ent1ObjectPage",
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "entitySet": "Pizzas"
+                            "entitySet": "Ent1"
                         }
-                    }
+                    },
+                    "controlAggregation": "midColumnPages",
+                    "contextPattern": "/Ent1({key})"
                 }
+            },
+            "config": {
+                "flexibleColumnLayout": {
+                    "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
+                    "defaultThreeColumnLayoutType": "ThreeColumnsMidExpanded"
+                },
+                "routerClass": "sap.f.routing.Router"
             }
         },
         "contentDensities": {
             "compact": true,
             "cozy": true
+        },
+        "rootView": {
+            "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+            "type": "XML",
+            "async": true,
+            "id": "appRootView"
         }
     },
     "sap.platform.abap": {
@@ -130,9 +154,5 @@
         "_version": "1.1.0",
         "registrationIds": [],
         "archeType": "transactional"
-    },
-    "sap.cloud": {
-        "public": true,
-        "service": "pizza3_app_router"
     }
 }
