@@ -1,0 +1,11 @@
+###
+GET https://s0020973095trial-dev-p4-srv.cfapps.us10.hana.ondemand.com/catalog/Ent1
+
+###
+POST https://s0020973095trial-dev-p4-srv.cfapps.us10.hana.ondemand.com/catalog/Ent1
+Content-Type: application/json
+
+{
+    "id":30,
+    "description":"Trinta"
+}
