@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="p5.srv.Admin" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Entity1" EntityType="p5.srv.Admin.Entity1">
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="Entity1"/>
+                </EntitySet>
+            </EntityContainer>
+            <EntityType Name="DraftAdministrativeData">
+                <Key>
+                    <PropertyRef Name="DraftUUID"/>
+                </Key>
+                <Property Name="DraftUUID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsCreatedByMe" Type="Edm.Boolean"/>
+                <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="InProcessByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean"/>
+            </EntityType>
+            <EntityType Name="Entity1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="description" Type="Edm.String" MaxLength="50"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="p5.srv.Admin.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="p5.srv.Admin.Entity1"/>
+            </EntityType>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="p5.srv.Admin.Entity1"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="p5.srv.Admin.Entity1"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="p5.srv.Admin.Entity1"/>
+                <ReturnType Type="p5.srv.Admin.Entity1"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="p5.srv.Admin.Entity1"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="p5.srv.Admin.Entity1"/>
+            </Action>
+            <Annotations Target="p5.srv.Admin.DraftAdministrativeData">
+                <Annotation Term="Common.Label" String="{i18n>Draft_DraftAdministrativeData}"/>
+                </Annotations>
+                <Annotations Target="p5.srv.Admin.DraftAdministrativeData/DraftUUID">
+                    <Annotation Term="UI.Hidden" Bool="true"/>
+                    <Annotation Term="Common.Label" String="{i18n>Draft_DraftUUID}"/>
+                    </Annotations>
+                    <Annotations Target="p5.srv.Admin.DraftAdministrativeData/CreationDateTime">
+                        <Annotation Term="Common.Label" String="{i18n>Draft_CreationDateTime}"/>
+                        </Annotations>
+                        <Annotations Target="p5.srv.Admin.DraftAdministrativeData/CreatedByUser">
+                            <Annotation Term="Common.Label" String="{i18n>Draft_CreatedByUser}"/>
+                            </Annotations>
+                            <Annotations Target="p5.srv.Admin.DraftAdministrativeData/DraftIsCreatedByMe">
+                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsCreatedByMe}"/>
+                                </Annotations>
+                                <Annotations Target="p5.srv.Admin.DraftAdministrativeData/LastChangeDateTime">
+                                    <Annotation Term="Common.Label" String="{i18n>Draft_LastChangeDateTime}"/>
+                                    </Annotations>
+                                    <Annotations Target="p5.srv.Admin.DraftAdministrativeData/LastChangedByUser">
+                                        <Annotation Term="Common.Label" String="{i18n>Draft_LastChangedByUser}"/>
+                                        </Annotations>
+                                        <Annotations Target="p5.srv.Admin.DraftAdministrativeData/InProcessByUser">
+                                            <Annotation Term="Common.Label" String="{i18n>Draft_InProcessByUser}"/>
+                                            </Annotations>
+                                            <Annotations Target="p5.srv.Admin.DraftAdministrativeData/DraftIsProcessedByMe">
+                                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                                <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsProcessedByMe}"/>
+                                                </Annotations>
+                                                <Annotations Target="p5.srv.Admin.Entity1">
+                                                    <Annotation Term="UI.SelectionFields">
+                                                        <Collection>
+                                                            <PropertyPath>ID</PropertyPath>
+                                                        </Collection>
+                                                    </Annotation>
+                                                    <Annotation Term="UI.LineItem">
+                                                        <Collection>
+                                                            <Record Type="UI.DataField">
+                                                                <PropertyValue Property="Value" Path="ID"/>
+                                                                <PropertyValue Property="Label" String="ID"/>
+                                                            </Record>
+                                                            <Record Type="UI.DataField">
+                                                                <PropertyValue Property="Value" Path="description"/>
+                                                                <PropertyValue Property="Label" String="Description"/>
+                                                            </Record>
+                                                        </Collection>
+                                                    </Annotation>
+                                                    <Annotation Term="UI.HeaderInfo">
+                                                        <Record Type="UI.HeaderInfoType">
+                                                            <PropertyValue Property="TypeName" String="E1"/>
+                                                            <PropertyValue Property="TypeNamePlural" String="E1s"/>
+                                                            <PropertyValue Property="Title">
+                                                                <Record Type="UI.DataField">
+                                                                    <PropertyValue Property="Value" Path="ID"/>
+                                                                </Record>
+                                                            </PropertyValue>
+                                                            <PropertyValue Property="Description">
+                                                                <Record Type="UI.DataField">
+                                                                    <PropertyValue Property="Value" Path="ID"/>
+                                                                </Record>
+                                                            </PropertyValue>
+                                                        </Record>
+                                                    </Annotation>
+                                                    <Annotation Term="UI.FieldGroup" Qualifier="E1ID">
+                                                        <Record Type="UI.FieldGroupType">
+                                                            <PropertyValue Property="Data">
+                                                                <Collection>
+                                                                    <Record Type="UI.DataField">
+                                                                        <PropertyValue Property="Value" Path="ID"/>
+                                                                    </Record>
+                                                                </Collection>
+                                                            </PropertyValue>
+                                                        </Record>
+                                                    </Annotation>
+                                                    <Annotation Term="UI.Facets">
+                                                        <Collection>
+                                                            <Record Type="UI.CollectionFacet">
+                                                                <PropertyValue Property="Label" String="Collection Facet Label"/>
+                                                                <PropertyValue Property="Facets">
+                                                                    <Collection>
+                                                                        <Record Type="UI.ReferenceFacet">
+                                                                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#E1Description"/>
+                                                                        </Record>
+                                                                    </Collection>
+                                                                </PropertyValue>
+                                                            </Record>
+                                                        </Collection>
+                                                    </Annotation>
+                                                    <Annotation Term="UI.FieldGroup" Qualifier="E1Description">
+                                                        <Record Type="UI.FieldGroupType">
+                                                            <PropertyValue Property="Data">
+                                                                <Collection>
+                                                                    <Record Type="UI.DataField">
+                                                                        <PropertyValue Property="Value" Path="description"/>
+                                                                        <PropertyValue Property="Label" String="Description"/>
+                                                                    </Record>
+                                                                </Collection>
+                                                            </PropertyValue>
+                                                        </Record>
+                                                    </Annotation>
+                                                </Annotations>
+                                                <Annotations Target="p5.srv.Admin.EntityContainer/Entity1">
+                                                    <Annotation Term="Common.DraftRoot">
+                                                        <Record Type="Common.DraftRootType">
+                                                            <PropertyValue Property="ActivationAction" String="p5.srv.Admin.draftActivate"/>
+                                                            <PropertyValue Property="EditAction" String="p5.srv.Admin.draftEdit"/>
+                                                            <PropertyValue Property="PreparationAction" String="p5.srv.Admin.draftPrepare"/>
+                                                        </Record>
+                                                    </Annotation>
+                                                </Annotations>
+                                                <Annotations Target="p5.srv.Admin.Entity1/IsActiveEntity">
+                                                    <Annotation Term="UI.Hidden" Bool="true"/>
+                                                </Annotations>
+                                                <Annotations Target="p5.srv.Admin.Entity1/HasActiveEntity">
+                                                    <Annotation Term="UI.Hidden" Bool="true"/>
+                                                </Annotations>
+                                                <Annotations Target="p5.srv.Admin.Entity1/HasDraftEntity">
+                                                    <Annotation Term="UI.Hidden" Bool="true"/>
+                                                </Annotations>
+                                                <Annotations Target="p5.srv.Admin.Entity1/DraftAdministrativeData">
+                                                    <Annotation Term="UI.Hidden" Bool="true"/>
+                                                </Annotations>
+                                            </Schema>
+                                        </edmx:DataServices>
+                                    </edmx:Edmx>

@@ -1,0 +1,68 @@
+_schema-version: "3.1"
+ID: p5
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: p5-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: p5-db
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+- name: p5-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: p5-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: p5-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: p5-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - e1app.zip
+      name: e1app
+      target-path: resources/
+- name: e1app
+  type: html5
+  path: app/e1app
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: p5-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hanatrial
+    service-plan: hdi-shared
+  properties:
+    hdi-service-name: ${service-name}
+- name: p5-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: p5-html5-srv
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install --production
+    - npx -p @sap/cds-dk cds build --production
