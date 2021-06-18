@@ -1,4 +1,11 @@
 {
   "authenticationMethod": "none",
-  "routes": []
+  "routes": [
+    {
+      "source": "/catalog/(.*)",
+      "destination": "srv-api",
+      "csrfProtection": true
+    }
+  ],
+  "welcomeFile": "/interactionitems"
 }
