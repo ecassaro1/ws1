@@ -30,3 +30,5 @@ mergedManifestDescriptor.json
 pg/p2/node_modules/
 pg/p2/gen/*
 pg/p2/gen/srv/*
+# auto generated wildcard
+ws1/pg/tj/MyHANAApp/db/.env

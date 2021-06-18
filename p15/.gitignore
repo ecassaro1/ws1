@@ -28,3 +28,6 @@ mta_archives/
 # IDEs
 .vscode
 .idea
+
+# auto generated wildcard
+ws1/pg/tj/MyHANAApp/db/.env

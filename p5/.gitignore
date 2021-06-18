@@ -21,3 +21,6 @@ mta_archives/
 .DS_Store
 *.orig
 *.log
+
+# auto generated wildcard
+ws1/pg/tj/MyHANAApp/db/.env

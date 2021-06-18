@@ -1,1 +1,3 @@
 node_modules/
+# auto generated wildcard
+ws1/pg/tj/MyHANAApp/db/.env
