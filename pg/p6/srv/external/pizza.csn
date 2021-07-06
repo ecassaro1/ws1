@@ -1,0 +1,149 @@
+{
+  "meta": {
+    "creator": "edmx2csn 1.0.41"
+  },
+  "$version": "0.2",
+  "definitions": {
+    "pizza.DraftAdministrativeData": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "DraftUUID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "CreationDateTime": {
+          "type": "cds.Timestamp"
+        },
+        "CreatedByUser": {
+          "type": "cds.String",
+          "length": 256
+        },
+        "DraftIsCreatedByMe": {
+          "type": "cds.Boolean"
+        },
+        "LastChangeDateTime": {
+          "type": "cds.Timestamp"
+        },
+        "LastChangedByUser": {
+          "type": "cds.String",
+          "length": 256
+        },
+        "InProcessByUser": {
+          "type": "cds.String",
+          "length": 256
+        },
+        "DraftIsProcessedByMe": {
+          "type": "cds.Boolean"
+        }
+      }
+    },
+    "pizza.Pizzas": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "description": {
+          "type": "cds.LargeString"
+        },
+        "kind": {
+          "type": "cds.LargeString"
+        },
+        "price": {
+          "type": "cds.Integer"
+        },
+        "IsActiveEntity": {
+          "key": true,
+          "type": "cds.Boolean"
+        },
+        "HasActiveEntity": {
+          "type": "cds.Boolean"
+        },
+        "HasDraftEntity": {
+          "type": "cds.Boolean"
+        },
+        "DraftAdministrativeData": {
+          "type": "cds.Association",
+          "target": "pizza.DraftAdministrativeData",
+          "cardinality": {
+            "max": 1
+          }
+        },
+        "SiblingEntity": {
+          "type": "cds.Association",
+          "target": "pizza.Pizzas",
+          "cardinality": {
+            "max": 1
+          }
+        }
+      }
+    },
+    "pizza.Promos": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "pizza": {
+          "type": "cds.Association",
+          "target": "pizza.Pizzas",
+          "cardinality": {
+            "max": 1
+          },
+          "on": [
+            {
+              "ref": [
+                "pizza",
+                "ID"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "pizza_ID"
+              ]
+            }
+          ]
+        },
+        "pizza_ID": {
+          "type": "cds.UUID"
+        },
+        "discount": {
+          "type": "cds.Integer"
+        },
+        "IsActiveEntity": {
+          "key": true,
+          "type": "cds.Boolean"
+        },
+        "HasActiveEntity": {
+          "type": "cds.Boolean"
+        },
+        "HasDraftEntity": {
+          "type": "cds.Boolean"
+        },
+        "DraftAdministrativeData": {
+          "type": "cds.Association",
+          "target": "pizza.DraftAdministrativeData",
+          "cardinality": {
+            "max": 1
+          }
+        },
+        "SiblingEntity": {
+          "type": "cds.Association",
+          "target": "pizza.Promos",
+          "cardinality": {
+            "max": 1
+          }
+        }
+      }
+    },
+    "pizza": {
+      "kind": "service"
+    }
+  }
+}

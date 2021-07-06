@@ -1,5 +1,3 @@
-Criei o CAP, adicionei HANA, fiz deploy por MTA. Criei o app. Deployei, mas falta o AppRouter.
-
 # Getting Started
 
 Welcome to your new project.
